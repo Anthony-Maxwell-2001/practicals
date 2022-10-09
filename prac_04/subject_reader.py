@@ -10,9 +10,14 @@ def main():
     data = get_data()
     print(data)
 
+    for information in data:
+        # print(len(information[1]))  #used to figure out the length of the longest name for the print statement below
+        print("{} is taught by {:12} and has {:3} students".format(*information))
+
 
 def get_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
+    data = []
     input_file = open(FILENAME)
     for line in input_file:
         print(line)  # See what a line looks like
@@ -23,7 +28,9 @@ def get_data():
         parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
         print(parts)  # See if that worked
         print("----------")
+        data.append(parts)
     input_file.close()
+    return data
 
 
 main()
