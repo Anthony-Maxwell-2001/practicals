@@ -11,7 +11,7 @@ def main():
     print(data)
 
     for information in data:
-        # print(len(information[1]))  #used to figure out the length of the longest name for the print statement below
+        # print(len(information[1]))  #used to figure out the length of the longest name for the formatting below
         print("{} is taught by {:12} and has {:3} students".format(*information))
 
 
