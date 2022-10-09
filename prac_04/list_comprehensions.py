@@ -47,10 +47,11 @@ print(numbers_greater_than_nine)
 # to create a string (not list) of the last names for those full names longer than 11 characters
 # the result should be: 'Harlem, Hendrix, Lovelace'
 names_longer_then_11 = [name.split() for name in full_names if len(name) > 11]
+last_names = []
 for name_longer_then_11 in names_longer_then_11:
     del name_longer_then_11[0]
-    print(name_longer_then_11)
-print(names_longer_then_11)
-# This question has me stuck. I got as far as getting the last names by themselves in nested loops, but I'm
-# unable to figure out how to join them as one string
+    last_names.append(name_longer_then_11[0])
+print(", ".join(last_names))
+# while this works it took a lot of trial and error, so I feel like I'm not using the right tool for the job here
+# and there is likely an easier way to do this that I'm not seeing.
 
