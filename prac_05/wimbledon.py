@@ -1,7 +1,7 @@
 """
 Wimbledon
 Estimate: 30 minutes
-Actual:
+Actual: 30 minutes 18 seconds
 """
 
 FILENAME = "wimbledon.csv"
@@ -10,6 +10,7 @@ FILENAME = "wimbledon.csv"
 def main():
     records = get_records()
     champion_to_count, countries = process_records(records)
+    display_results(champion_to_count, countries)
 
 
 def get_records():
@@ -35,6 +36,14 @@ def process_records(records):
     print(countries)
     print(champion_to_count)
     return champion_to_count, countries
+
+
+def display_results(champion_to_count, countries):
+    print("Wimbledon Champions: ")
+    for name, score in champion_to_count.items():
+        print(name, score)
+    print(f"These {len(countries)} countries have won Wimbledon:")
+    print(", ".join(countries))
 
 
 main()
