@@ -3,10 +3,10 @@ COLOUR_TO_HEX = {"purple": "#a020f0", "yellow1": "#ffff00", "orangered1": "#ff45
                  "azure1": "#f0ffff", "amethyst": "#9966cc"}
 print(COLOUR_TO_HEX)
 
-colour = input("Enter colour name: ")
+colour = input("Enter colour name: ").lower()
 while colour != "":
     if colour in COLOUR_TO_HEX:
         print(colour, "is", COLOUR_TO_HEX[colour])
     else:
         print("Invalid colour")
-    colour = input("Enter colour name: ")
+    colour = input("Enter colour name: ").lower()
