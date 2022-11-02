@@ -3,7 +3,7 @@ CP1404 guitar.py
 By Anthony Maxwell
 
 Estimate: 1 hour
-Actual:
+Actual: 50 minutes
 """
 
 
