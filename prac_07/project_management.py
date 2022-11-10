@@ -31,11 +31,24 @@ def main():
         elif choice == "F":
             pass
         elif choice == "A":
-            pass
+            add_new_project(projects)
         elif choice == "U":
             pass
+        print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
+
+
+def add_new_project(projects):
+    print("Lets add a new project: ")
+    name = input("Name: ")
+    date_string = input("Start date (dd/mm/yy): ")
+    date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    priority = input("Priority: ")
+    cost = float(input("Cost Estimate: $"))
+    completion = int(input("Percent completed: "))
+    project_to_add = Project(name, date, priority, cost, completion)
+    projects.append(project_to_add)
 
 
 def display_projects(projects):
