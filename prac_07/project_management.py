@@ -25,15 +25,11 @@ def main():
         if choice == "L":
             load_projects_from_file(projects)
         elif choice == "S":
-            file_name = input("Filename: ")
-            with open(file_name, 'w') as in_file:
-                print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n", file=in_file)
-                for project in projects:
-                    print(project, file=in_file)
+            save_to_file(projects)
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            pass
+            display_projects_filtered_by_date(projects)
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
@@ -42,6 +38,24 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
+
+
+def display_projects_filtered_by_date(projects):
+    date_string = input("Show projects that start after date (dd/mm/yy): ")
+    date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    projects.sort(key=attrgetter('start_date'))
+    for project in projects:
+        if project.start_date > date:
+            print(project)
+
+
+def save_to_file(projects):
+    file_name = input("Filename: ")
+    with open(file_name, 'w') as in_file:
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=in_file)
+        for project in projects:
+            print(project, file=in_file)
+            # Could not figure out a way to write this to a file in the original formatting
 
 
 def update_projects(projects):
@@ -65,7 +79,7 @@ def get_valid_number(user_input, projects):
     while not valid_number:
         try:
             number = int(input(user_input))
-            if number >= len(projects) and number <= -1:
+            if len(projects) <= number <= -1:
                 print("Number must be within numbers listed above")
             else:
                 valid_number = True
