@@ -25,7 +25,11 @@ def main():
         if choice == "L":
             load_projects_from_file(projects)
         elif choice == "S":
-            pass
+            file_name = input("Filename: ")
+            with open(file_name, 'w') as in_file:
+                print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n", file=in_file)
+                for project in projects:
+                    print(project, file=in_file)
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
@@ -33,10 +37,41 @@ def main():
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
-            pass
+            update_projects(projects)
+
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
+
+
+def update_projects(projects):
+    for i, project in enumerate(projects):
+        i += 0
+        print(i, project)
+    project_to_modify = get_valid_number("Project choice: ", projects)
+    print(projects[project_to_modify])
+    new_percentage = int(input("New Percentage: "))
+    if new_percentage != "":
+        projects[project_to_modify].completion_percentage = new_percentage
+    new_priority = int(input("New Priority: "))
+    if new_priority != "":
+        projects[project_to_modify].priority = new_priority
+    return projects
+
+
+def get_valid_number(user_input, projects):
+    """Gets a valid number and returns it"""
+    valid_number = False
+    while not valid_number:
+        try:
+            number = int(input(user_input))
+            if number >= len(projects) and number <= -1:
+                print("Number must be within numbers listed above")
+            else:
+                valid_number = True
+                return number
+        except ValueError:
+            print("Invalid input; enter a valid number")
 
 
 def add_new_project(projects):
@@ -49,6 +84,7 @@ def add_new_project(projects):
     completion = int(input("Percent completed: "))
     project_to_add = Project(name, date, priority, cost, completion)
     projects.append(project_to_add)
+    return projects
 
 
 def display_projects(projects):
