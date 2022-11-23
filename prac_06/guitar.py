@@ -16,6 +16,13 @@ class Guitar:
     def __str__(self):
         return f"{self.name} ({self.year}) : ${self.cost:.2f}"
 
+    # __repr__ and __lt__ were adding during prac_07, the rest was written during prac_06
+    def __repr__(self):
+        return f"{self.name},{self.year},{self.cost}"
+
+    def __lt__(self, other):
+        return self.year < other.year
+
     def get_age(self):
         return 2022 - self.year
 
